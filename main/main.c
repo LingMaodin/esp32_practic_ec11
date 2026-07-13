@@ -5,6 +5,7 @@
 #include "driver/gpio.h"
 #include "driver/pulse_cnt.h"
 #include "driver/gpio_filter.h"
+
 #define EC11_button GPIO_NUM_10
 #define EC11_S1 GPIO_NUM_11
 #define EC11_S2 GPIO_NUM_12
@@ -12,7 +13,7 @@
 pcnt_unit_handle_t ec11_unit_hdl=NULL;//ec11单元句柄
 pcnt_channel_handle_t ec11_channel_s1_hdl=NULL;//ec11通道句柄1
 pcnt_channel_handle_t ec11_channel_s2_hdl=NULL;//ec11通道句柄2
-gpio_glitch_filter_handle_t ec11_button_filter_hdl=NULL;//ec11按键毛刺过滤器句柄
+static gpio_glitch_filter_handle_t ec11_button_filter_hdl=NULL;//霍尔编码器毛刺过滤器句柄
 static volatile bool ec11_button=false;//全局标志位记录按键状态 volatile确保isr修改变量能被main正确读取
 //s1通道：上升沿+1，下降沿-1，高电平翻转，低电平保持
 //s2通道：上升沿+1，下降沿-1，高电平保持，低电平翻转
